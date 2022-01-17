@@ -1,0 +1,19 @@
+image: "python:3.9"
+
+before_script:
+  - python --version
+  - pip install flake8
+
+stages:
+  - test
+  - flake
+
+flake8:
+  stage: flake
+  script:
+  - flake8 .
+
+sast:
+  stage: test
+include:
+- template: Security/SAST.gitlab-ci.yml
